@@ -6,6 +6,59 @@
 <title>About — Genesis Gonzalez</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
+nav {
+  position: relative;
+  padding: 18px 52px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-name {
+  font-size: 0.88rem; font-weight: 300;
+  text-decoration: none; color: var(--ink);
+}
+.nav-name:hover, .nav-name:focus, .nav-name:active { text-decoration: none; outline: none; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.88rem; font-weight: 300; color: var(--ink); text-decoration: none; transition: opacity 0.18s; }
+.nav-links a:hover { opacity: 0.5; }
+.nav-links a.active { text-decoration: underline; text-underline-offset: 4px; }
+.nav-links a.dim { color: var(--mid); }
+
+/* Playground gradient */
+.nav-links a.pg span {
+  background: linear-gradient(90deg,#f472b6,#a855f7,#818cf8,#f472b6);
+  background-size: 250% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: pgshift 3.5s linear infinite;
+}
+.nav-links a.pg:hover { opacity: 1; }
+@keyframes pgshift { 0%{background-position:0% center} 100%{background-position:250% center} }
+
+/* Hamburger */
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; outline: none;
+  padding: 6px; cursor: none; margin-left: auto;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--ink); border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.2s;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 720px) {
+  nav { padding: 16px 24px; flex-wrap: wrap; }
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: block; width: 100%; max-height: 0;
+    overflow: hidden; opacity: 0;
+    transition: max-height 0.44s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
+  }
+  .nav-links.open { max-height: 300px; opacity: 1; }
+  .nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+  .nav-links li:last-child a { border-bottom: none; }
+}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --white: #fff;
@@ -17,13 +70,7 @@
 body { background: var(--white); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; cursor: none; }
 .cursor { width:7px; height:7px; background:var(--ink); border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:difference; }
 
-nav { position:relative; padding:18px 52px; display:flex; justify-content:space-between; align-items:center; }
-.nav-name { font-size:0.88rem; font-weight:300; text-decoration:none; color:var(--ink); }
-.nav-links { display:flex; gap:32px; list-style:none; }
-.nav-links a { font-size:0.88rem; font-weight:300; color:var(--ink); text-decoration:none; transition:opacity 0.18s; }
-.nav-links a:hover { opacity:0.5; }
-.nav-links a.active { text-decoration:underline; text-underline-offset:4px; }
-.nav-links a.dim { color:var(--mid); }
+
 
 @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 nav           { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
@@ -66,7 +113,7 @@ footer { max-width:1060px; margin:0 auto; padding:16px 52px; border-top:1px soli
 footer p { font-size:0.65rem; color:var(--mid); }
 
 @media (max-width:720px) {
-  nav { padding:16px 24px; }
+  
   .about-hi { padding:48px 24px 40px; }
   .about-photos { padding:0 16px; gap:6px; }
   .board-photo { width:calc(20vw - 10px); }
@@ -82,6 +129,35 @@ footer p { font-size:0.65rem; color:var(--mid); }
   transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+ 100%{background-position:250% center} }
+
+
+@media (max-width: 720px) {
+  
+  
+  
+  .nav-links.open { max-height: 300px; opacity: 1; }
+  .nav-links li a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.94rem;
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+}
+
+
+@media (max-width: 720px) {
+  
+  
+  
+  .nav-links.open { max-height: 300px; opacity: 1; }
+  .nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.94rem; font-weight: 400; }
+  .nav-links li:last-child a { border-bottom: none; }
+}
+
+ 100%{background-position:250% center} }
 </style>
 </head>
 <body>
@@ -90,10 +166,11 @@ footer p { font-size:0.65rem; color:var(--mid); }
 
 <nav>
   <a href="index.html" class="nav-name">Genesis Gonzalez</a>
-  <ul class="nav-links">
+  <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Work</a></li>
     <li><a href="about.html" class="active">About</a></li>
-    <li><a href="playground.html">Fun</a></li>
+    <li><a href="playground.html" class="pg"><span>Playground</span></a></li>
     <li><a href="https://docs.google.com/document/d/1oeEOG62CRp6in0x2XRff7gzfNeYK_z6iW47piGqvPAo/edit?usp=sharing" target="_blank" class="dim">Resume</a></li>
   </ul>
 </nav>
@@ -128,7 +205,7 @@ footer p { font-size:0.65rem; color:var(--mid); }
 
 <footer>
   <p>© 2026 Genesis Gonzalez</p>
-  <p>Chicago-bound · Open to Relocation</p>
+  <p>Chicago-bound</p>
 </footer>
 
 <script>
@@ -153,6 +230,18 @@ document.getElementById('copyBtn').addEventListener('click', () => {
   confirm.style.opacity = 1;
   setTimeout(() => confirm.style.opacity = 0, 1800);
 });
+
+
+
+
+
+// Mobile nav
+(function(){
+  var b=document.getElementById('navBurger'),n=document.getElementById('navLinks');
+  if(!b||!n)return;
+  b.addEventListener('click',function(){b.classList.toggle('open');n.classList.toggle('open');});
+  n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');n.classList.remove('open');});});
+})();
 </script>
 </body>
 </html>
