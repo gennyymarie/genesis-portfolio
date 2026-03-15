@@ -625,7 +625,7 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
 <!-- HERO -->
 <section class="hero">
   <p class="hero-text">
-    I'm Genesis, a multidisciplinary designer that loves creating bold brands, human-centered systems, and <em>making things feel just right.</em>
+    I'm Genesis, a multidisciplinary designer that loves creating bold visuals, thoughtful products, and <em>making things feel just right.</em>
   </p>
 </section>
 
@@ -675,7 +675,7 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
 <!-- FREETIME -->
 <section class="freetime reveal-section">
   <div class="ft-head">
-    <h2 class="ft-headline">Creative projects and things I make <em>for fun.</em></h2>
+    <h2 class="ft-headline">Brand design, packaging, editorial <em>&amp; more.</em></h2>
     <a href="playground.html" class="ft-link">View all on Playground ↗</a>
   </div>
   <div class="ft-row">
@@ -715,8 +715,8 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
 <!-- CONTACT -->
 <section class="contact reveal-section" id="contact">
   <div>
-    <h2 class="contact-head">Let's make<br>something <em>good.</em></h2>
-    <a href="/cdn-cgi/l/email-protection#8aedefe4eff9e3f9e7ebf8e3efa4eeeff9e3ede4caede7ebe3e6a4e9e5e7" class="contact-email"><span class="__cf_email__" data-cfemail="bddad8d3d8ced4ced0dccfd4d893d9d8ced4dad3fddad0dcd4d193ded2d0">[email&#160;protected]</span></a>
+    <h2 class="contact-head">Let's design<br>something <em>great.</em></h2>
+    <a href="#" class="contact-email" id="contactEmail"></a>
   </div>
   <div class="contact-links">
     <a href="https://www.linkedin.com/in/genesismarie" class="contact-link" target="_blank">LinkedIn ↗</a>
@@ -726,7 +726,7 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
 
 <footer class="reveal-section">
   <p>© 2026 Genesis Gonzalez</p>
-  <p>Chicago-bound</p>
+  <p>Designed & coded with ♥ using Claude</p>
 </footer>
 
 <!-- POPUP -->
@@ -1534,6 +1534,15 @@ const homeObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal-section').forEach(el => homeObs.observe(el));
+
+// Build contact email to avoid Cloudflare obfuscation
+(function(){
+  var el = document.getElementById('contactEmail');
+  if (!el) return;
+  var e = 'genesismarie.design' + '@' + 'gmail.com';
+  el.href = 'mailto:' + e;
+  el.textContent = e;
+})();
 </script>
 </body>
 </html>
