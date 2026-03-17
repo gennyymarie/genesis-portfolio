@@ -174,40 +174,7 @@ body {
 .g3 { background: linear-gradient(140deg,#4a1e10 0%,#8a3a20 100%); }
 .g4 { background: linear-gradient(140deg,#28186a 0%,#5a3a9a 100%); }
 
-/* Mentor U card pills */
-.mu-card { position: relative; overflow: hidden; }
-.mu-pill {
-  position: absolute; z-index: 3;
-  background: rgba(99,77,147,0.43);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: none;
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-size: 0.75rem; font-weight: 500; color: #fff;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: top 0.45s cubic-bezier(0.16,1,0.3,1),
-              left 0.45s cubic-bezier(0.16,1,0.3,1);
-}
-/* Default: scattered around phone */
-.mu-pill-1 { top: 35%; left: 5%; }
-.mu-pill-2 { top: 10%; right: 8%; left: auto; }
-.mu-pill-3 { top: 62%; right: 5%; left: auto; }
-/* Hover: line up at top left */
-.masonry-item:hover .mu-pill-1 { top: 8%; left: 6%; }
-.masonry-item:hover .mu-pill-2 { top: 8%; left: calc(6% + 118px); right: auto; }
-.masonry-item:hover .mu-pill-3 { top: 8%; left: calc(6% + 236px); right: auto; }
-
-/* Match card pill to glass style */
-.mu-card .card-pill {
-  background: rgba(99,77,147,0.43);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: none;
-  color: #fff;
-}
-.mu-card .card-pill .yr { color: rgba(255,255,255,0.6); }
+/* FREETIME */
 .freetime { max-width: 1060px; margin: 0 auto; padding: 0 52px 92px; }
 .ft-head { margin-bottom: 20px; }
 .ft-headline {
@@ -647,6 +614,27 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
   .card-img.short { height: 180px; }
   .card-tagline { padding-top: 10px; max-height: 60px; opacity: 1; }
 }
+
+/* Mentor U pills */
+.mu-card { position: relative; overflow: hidden; }
+.mu-pill {
+  position: absolute; z-index: 3;
+  background: rgba(120,90,200,0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(180,150,255,0.25);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.73rem; font-weight: 500; color: #fff;
+  white-space: nowrap; pointer-events: none;
+  transition: top 0.45s cubic-bezier(0.16,1,0.3,1), left 0.45s cubic-bezier(0.16,1,0.3,1);
+}
+.mu-pill-1 { top: 35%; left: 5%; }
+.mu-pill-2 { top: 12%; right: 8%; }
+.mu-pill-3 { top: 62%; right: 6%; }
+.masonry-item:hover .mu-pill-1 { top: 8%; left: 6%; }
+.masonry-item:hover .mu-pill-2 { top: 8%; left: calc(6% + 118px); right: auto; }
+.masonry-item:hover .mu-pill-3 { top: 8%; left: calc(6% + 236px); right: auto; }
 </style>
 </head>
 <body>
