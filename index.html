@@ -174,7 +174,16 @@ body {
 .g3 { background: linear-gradient(140deg,#4a1e10 0%,#8a3a20 100%); }
 .g4 { background: linear-gradient(140deg,#28186a 0%,#5a3a9a 100%); }
 
-/* FREETIME */
+/* Mentor U card pill glass effect */
+.mu-card .card-pill {
+  background: rgba(20,20,20,0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  box-shadow: none;
+}
+.mu-card .card-pill .yr { color: rgba(255,255,255,0.55); font-weight: 300; }
 .freetime { max-width: 1060px; margin: 0 auto; padding: 0 52px 92px; }
 .ft-head { margin-bottom: 20px; }
 .ft-headline {
@@ -648,7 +657,7 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
   <div class="masonry">
 
     <div class="masonry-item" onclick="openPopup('mentor')">
-      <div class="card-img tall">
+      <div class="card-img tall mu-card">
         <div class="card-bg" style="background-image:url('cover-mentoru.png');background-size:cover;background-position:center top;"></div>
         <div class="card-pill">Mentor U <span class="yr">· 2025</span></div>
       </div>
