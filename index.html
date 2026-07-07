@@ -523,13 +523,16 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
 @media (max-width: 520px) { .cs-before-after { grid-template-columns: 1fr; } }
 
 /* Circle numbered steps */
-.cs-circle-steps { list-style: none; margin: 24px 0; position: relative; padding-left: 24px; }
-.cs-circle-steps::before { content: ''; position: absolute; left: 18px; top: 24px; bottom: 24px; width: 2px; background: var(--border); }
-.cs-circle-step { display: flex; gap: 18px; padding: 0 0 36px; align-items: flex-start; position: relative; }
-.cs-circle-step:last-child { padding-bottom: 0; }
-.cs-circle-num { width: 36px; height: 36px; min-width: 36px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
-.cs-circle-step h5 { font-size: 0.84rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; margin-top: 6px; }
-.cs-circle-step p { font-size: 0.84rem; color: var(--mid); line-height: 1.65; margin: 0; }
+/* Step accordion */
+.cs-accord { list-style: none; margin: 24px 0 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.cs-accord-item { border-bottom: 1px solid var(--border); }
+.cs-accord-item:last-child { border-bottom: none; }
+.cs-accord-trigger { width: 100%; padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+.cs-accord-num { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.cs-accord-title { flex: 1; font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+.cs-accord-body { display: block; padding: 0 20px 20px; }
+.cs-accord-body p { font-size: 0.84rem; color: var(--mid); line-height: 1.65; margin: 0 0 12px; }
+.cs-accord-body img, .cs-accord-body video { width: 100%; border-radius: 8px; display: block; }
 
 /* Screenshot grid: 2-col + optional full-width */
 .cs-screen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
@@ -613,7 +616,6 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
   .card-tagline { padding-top: 10px; max-height: 60px; opacity: 1; }
 }
 
- 100%{background-position:250% center} }
 
 @media (min-width: 721px) and (max-width: 1024px) {
   .hero, .work, .freetime, .contact, footer { padding-left: 32px; padding-right: 32px; }
@@ -636,15 +638,14 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
   <ul class="nav-links" id="navLinks">
     <li><a href="#work" class="active">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="playground.html" class="pg"><span>Playground</span></a></li>
-    <li><a href="https://docs.google.com/document/d/1oeEOG62CRp6in0x2XRff7gzfNeYK_z6iW47piGqvPAo/edit?usp=sharing" target="_blank" class="dim">Resume</a></li>
+    <li><a href="https://docs.google.com/document/d/1zNy76x0Se27azE8jXadkKxv49OyBwPgmIT_o7kNyL_w/edit?usp=sharing" target="_blank" class="dim">Resume</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <p class="hero-text">
-    I'm Genesis, a multidisciplinary designer that loves creating bold visuals, thoughtful products, and <em>making things feel just right.</em>
+    I'm Genesis, a UX researcher and designer who uncovers what users need and turns those insights into products that <em>feel just right.</em>
   </p>
 </section>
 
@@ -691,45 +692,6 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
   </div>
 </section>
 
-<!-- FREETIME -->
-<section class="freetime reveal-section">
-  <div class="ft-head">
-    <h2 class="ft-headline">Brand design, packaging, editorial <em>&amp; more.</em></h2>
-    <a href="playground.html" class="ft-link">View all on Playground &nearr;</a>
-  </div>
-  <div class="ft-row">
-    <div class="ft-card">
-      <div class="ft-card-inner" style="background:linear-gradient(135deg,#fde8d0,#f5c49a);">
-        <div><div class="ft-cat">Brand Identity</div><div class="ft-name">FIERA</div></div>
-      </div>
-    </div>
-    <div class="ft-card">
-      <div class="ft-card-inner" style="background:linear-gradient(135deg,#d0e4f0,#a8c8dc);">
-        <div><div class="ft-cat">Brand Identity</div><div class="ft-name">Moody Mix</div></div>
-      </div>
-    </div>
-    <div class="ft-card">
-      <div class="ft-card-inner" style="background:linear-gradient(135deg,#d8f0d8,#a8d8a8);">
-        <div><div class="ft-cat">Packaging</div><div class="ft-name">Matcha</div></div>
-      </div>
-    </div>
-    <div class="ft-card">
-      <div class="ft-card-inner" style="background:linear-gradient(135deg,#f0e8f8,#ddc8f0);">
-        <div><div class="ft-cat">Coming Soon</div><div class="ft-name">Lip Gloss</div></div>
-      </div>
-    </div>
-    <div class="ft-card">
-      <div class="ft-card-inner" style="background:linear-gradient(135deg,#f8e8d0,#f0c8a0);">
-        <div><div class="ft-cat">Coming Soon</div><div class="ft-name">Hot Sauce</div></div>
-      </div>
-    </div>
-    <div class="ft-card">
-      <div class="ft-card-inner" style="background:linear-gradient(135deg,#ebebeb,#d8d8d8);">
-        <div><div class="ft-cat">More</div><div class="ft-name">View all →</div></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section class="contact reveal-section" id="contact">
@@ -739,13 +701,13 @@ nav   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
   </div>
   <div class="contact-links">
     <a href="https://www.linkedin.com/in/genesismarie" class="contact-link" target="_blank">LinkedIn ↗</a>
-    <a href="https://docs.google.com/document/d/1oeEOG62CRp6in0x2XRff7gzfNeYK_z6iW47piGqvPAo/edit?usp=sharing" class="contact-link" target="_blank">Resume ↗</a>
+    <a href="https://docs.google.com/document/d/1zNy76x0Se27azE8jXadkKxv49OyBwPgmIT_o7kNyL_w/edit?usp=sharing" class="contact-link" target="_blank">Resume ↗</a>
   </div>
 </section>
 
 <footer class="reveal-section">
   <p>© 2026 Genesis Gonzalez</p>
-  <p>Designed & coded with ♥ using Claude</p>
+  <p>Designed & coded with ♥ by Genesis</p>
 </footer>
 
 <!-- POPUP -->
@@ -891,7 +853,24 @@ const data = {
         <span class="cs-label">Ideation</span>
         <h3 class="cs-heading">How Everything Comes Together</h3>
         <p class="cs-body">With my features locked in, I mapped the user flows to show how students would move through the platform — from onboarding to finding mentors to completing milestones.</p>
-        <img src="images/mentor-user-flow.png" alt="User flow diagram" style="width:100%;border-radius:10px;display:block;">
+
+        <!-- User flow tabs -->
+        <div class="uf-tabs" style="margin-top:20px;">
+          <div style="display:flex;gap:0;border-bottom:1px solid var(--border);">
+            <button class="uft-btn active" onclick="ufSwitch(0,this)" style="padding:8px 20px;font-size:0.76rem;font-weight:500;background:none;border:none;border-bottom:2px solid var(--ink);color:var(--ink);cursor:none;margin-bottom:-1px;font-family:'DM Sans',sans-serif;">Onboarding</button>
+            <button class="uft-btn" onclick="ufSwitch(1,this)" style="padding:8px 20px;font-size:0.76rem;font-weight:300;background:none;border:none;border-bottom:2px solid transparent;color:var(--mid);cursor:none;margin-bottom:-1px;font-family:'DM Sans',sans-serif;">Mentor Booking</button>
+            <button class="uft-btn" onclick="ufSwitch(2,this)" style="padding:8px 20px;font-size:0.76rem;font-weight:300;background:none;border:none;border-bottom:2px solid transparent;color:var(--mid);cursor:none;margin-bottom:-1px;font-family:'DM Sans',sans-serif;">Milestones</button>
+          </div>
+          <div id="uf-panel-0" style="margin-top:16px;">
+            <img src="images/mentor-user-flow-onboarding.png" alt="Onboarding user flow" style="width:100%;border-radius:10px;display:block;">
+          </div>
+          <div id="uf-panel-1" style="display:none;margin-top:16px;">
+            <img src="images/mentor-user-flow-booking.png" alt="Mentor booking user flow" style="width:100%;border-radius:10px;display:block;">
+          </div>
+          <div id="uf-panel-2" style="display:none;margin-top:16px;">
+            <img src="images/mentor-user-flow-milestones.png" alt="Milestones user flow" style="width:100%;border-radius:10px;display:block;">
+          </div>
+        </div>
       </div>
 
       <div class="cs-section">
@@ -986,7 +965,7 @@ const data = {
   wayfair: {
     name: 'Wayfair Externship',
     meta: [{l:'Timeline',v:'Oct – Dec 2025'},{l:'Role',v:'AI Agent Developer'},{l:'Scope',v:'Research Automation · Prompt Engineering'}],
-    hero: 'images/hero-wayfair.png',
+    hero: 'cover-wayfair.png',
     desc: `
       <div class="cs-section">
         <span class="cs-label">Overview</span>
@@ -1136,15 +1115,14 @@ const data = {
   },
   rolesync: {
     name: 'RoleSync',
-    subtitle: 'A Chrome extension that auto-extracts job posting data and syncs it to Airtable, a sprint built in 5 days to solve my own job search frustration.',
+    subtitle: 'Built in 5 days to solve a problem I was living through. RoleSync pulls job data straight into Airtable, so you can focus on applying, not organizing.',
     meta: [{l:'Timeline',v:'Feb 2026 (5 days)'},{l:'Role',v:'Designer & Developer'},{l:'Tools',v:'Claude Code · Airtable · GitHub'}],
     hero: 'images/hero-rolesync.png',
     desc: `
       <div class="cs-section">
         <span class="cs-label">Problem</span>
-        <h3 class="cs-heading">Tab Hell is Real</h3>
-        <p class="cs-body">While applying to 150+ UX and product design roles, I was manually copying job details from LinkedIn, Handshake, ZipRecruiter, and company career pages into a Google Sheet. Every application meant switching between tabs, copying fields one at a time, and hoping I didn't miss anything.</p>
-        <p class="cs-body">The spreadsheet grew messy fast — inconsistent formatting, missing links, no reliable way to track status or follow-ups. I was spending more time organizing my search than actually applying.</p>
+        <h3 class="cs-heading">Job Searching is Stressful. Tracking It Shouldn't Be.</h3>
+        <p class="cs-body">At some point during my job search, I had 150 applications scattered across LinkedIn, Handshake, ZipRecruiter, and company sites, all being copy-pasted into a Google Sheet that was becoming impossible to manage. Every new application meant another 3 to 5 minutes of tab-switching, manual entry, and hoping I didn't mix anything up. I knew there had to be a better way.</p>
         <div class="cs-stats">
           <div class="cs-stat"><span class="cs-stat-num">150+</span><span class="cs-stat-label">Jobs manually entered into a spreadsheet</span></div>
           <div class="cs-stat"><span class="cs-stat-num">3–5 min</span><span class="cs-stat-label">Per application just to copy & paste data</span></div>
@@ -1154,14 +1132,14 @@ const data = {
           <div class="cs-ba-card cs-ba-before">
             <div class="cs-ba-header">✕ Before</div>
             <div class="cs-ba-body">
-              <p>A sprawling Google Sheet with 150+ manually entered rows. Inconsistent formatting, missing links, constant context-switching between job sites and the spreadsheet.</p>
+              <p>150+ rows entered by hand, one by one. Job links buried in cells, inconsistent column names, and no quick way to filter what actually mattered.</p>
               <img src="images/rolesync-google-sheet.png" alt="Messy Google Sheet" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
           </div>
           <div class="cs-ba-card cs-ba-after">
             <div class="cs-ba-header">✓ After</div>
             <div class="cs-ba-body">
-              <p>A structured Airtable dashboard with color-coded job types, clean columns, clickable links, and every entry auto-populated in seconds.</p>
+              <p>A clean Airtable dashboard where every application lives. Color-coded statuses, consistent fields, and everything populated automatically in seconds.</p>
               <img src="images/rolesync-airtable.png" alt="Clean Airtable base" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
           </div>
@@ -1171,81 +1149,17 @@ const data = {
       <hr class="cs-divider">
 
       <div class="cs-section">
-        <span class="cs-label">Solution</span>
-        <h3 class="cs-heading">One Click. Every Field. Straight to Airtable.</h3>
-        <p class="cs-body">RoleSync is a Chrome extension that sits on any job posting page and auto-extracts the key details — company, title, job type, work model, salary, location, and source — then saves everything directly to an Airtable base with a single click.</p>
-        <div class="cs-2col-cards" style="margin-top:16px;">
-          <div class="cs-2col-card"><strong>Auto-Extraction</strong><br>Grabs company, job title, location, salary, job type, work model, and URL from any job page automatically.</div>
-          <div class="cs-2col-card"><strong>Live Airtable Sync</strong><br>Saves directly to your Airtable base via API with a connection indicator confirming the link is active.</div>
-          <div class="cs-2col-card"><strong>Multi-Platform</strong><br>Works across LinkedIn, Handshake, ZipRecruiter, and company career sites — all from one extension.</div>
-          <div class="cs-2col-card"><strong>Status & Notes</strong><br>Tag each job as "Applied" or "Not Applied," add a date, and leave freeform notes for follow-ups.</div>
-        </div>
-        <div class="cs-screen-grid" style="margin-top:20px;">
-          <div class="cs-screen-item">
-            <img src="images/rolesync-extension-form.png" alt="Extension Form" style="width:100%;border-radius:8px;display:block;">
-            <div class="cs-screen-caption"><h5>The Extension</h5><p>Auto-populated fields after clicking RoleSync on a job posting page.</p></div>
-          </div>
-          <div class="cs-screen-item">
-            <img src="images/rolesync-save-confirmation.png" alt="Save Confirmation" style="width:100%;border-radius:8px;display:block;">
-            <div class="cs-screen-caption"><h5>Save Confirmation</h5><p>Immediate feedback after saving — confirms the job was synced and offers to save another.</p></div>
-          </div>
-          <div class="cs-screen-item full">
-            <img src="images/rolesync-airtable-dashboard.png" alt="Airtable Dashboard" style="width:100%;border-radius:8px;display:block;">
-            <div class="cs-screen-caption"><h5>Airtable Dashboard</h5><p>Every saved job lands here — structured, color-coded, and filterable. The single source of truth for the entire job search.</p></div>
-          </div>
-        </div>
-      </div>
-
-      <hr class="cs-divider">
-
-      <div class="cs-section">
         <span class="cs-label">How It Works</span>
         <h3 class="cs-heading">Save a Job in Seconds</h3>
-        <ul class="cs-circle-steps" style="margin-top:24px;">
-          <li class="cs-circle-step"><span class="cs-circle-num">1</span><div><h5>Open any job posting</h5><p>Navigate to a listing on LinkedIn, Handshake, ZipRecruiter, or any company career page.</p></div></li>
-          <li class="cs-circle-step"><span class="cs-circle-num">2</span><div><h5>Click the RoleSync extension</h5><p>Fields auto-populate with extracted job data — company, title, salary, location, and source are detected automatically.</p></div></li>
-          <li class="cs-circle-step"><span class="cs-circle-num">3</span><div><h5>Review and customize</h5><p>Edit any field, tag your application status, add a date, and leave notes — anything the auto-extraction missed, you fill in.</p></div></li>
-          <li class="cs-circle-step"><span class="cs-circle-num">4</span><div><h5>Hit "Save to Airtable"</h5><p>One click sends everything to your Airtable dashboard. A confirmation appears, and you're ready to save the next one.</p></div></li>
-        </ul>
-      </div>
-
-      <div class="cs-section">
-        <span class="cs-label">Design Decisions</span>
-        <h3 class="cs-heading">Every Field Earns Its Place</h3>
-        <div class="cs-2col-cards" style="margin-top:16px;">
-          <div class="cs-2col-card"><strong>Required Fields</strong><br>Only Company and Job Title are required. Not every posting lists salary or location — the form shouldn't block a save over missing data the job site didn't provide.</div>
-          <div class="cs-2col-card"><strong>Status & Date Applied</strong><br>"Not Applied" is the default so you can save jobs you're interested in before applying — something the old spreadsheet didn't differentiate well.</div>
-          <div class="cs-2col-card"><strong>Source Detection</strong><br>The extension auto-detects which platform you're on and fills the Source dropdown automatically, plus stores the URL. No more hunting for the original listing later.</div>
-          <div class="cs-2col-card"><strong>Settings & Onboarding</strong><br>A step-by-step setup page guides users through connecting their Airtable account, with a "Test Connection" button and green indicator confirming the link.</div>
-        </div>
-        <div class="cs-screen-grid" style="margin-top:16px;">
-          <div class="cs-screen-item full">
-            <img src="images/rolesync-settings.png" alt="Settings / Onboarding page" style="width:100%;border-radius:8px;display:block;">
-            <div class="cs-screen-caption" style="text-align:center;"><h5>Onboarding Experience</h5><p>Step-by-step setup with inline instructions, "Test Connection" button, and live status indicator.</p></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cs-section">
-        <span class="cs-label">Iterations</span>
-        <h3 class="cs-heading">Refined in 5 Days</h3>
-        <p class="cs-body">Even in a rapid sprint, the extension went through meaningful design changes:</p>
-        <ul class="cs-timeline" style="margin-top:20px;">
-          <li class="cs-timeline-item"><h5>Rebrand: Job Tracker → RoleSync</h5><p>The original name was generic and descriptive. "RoleSync" communicates both what it does and feels like an actual product, not a side project label.</p></li>
-          <li class="cs-timeline-item"><h5>Added Required Field Indicators</h5><p>V1 had no visual hierarchy between fields. Added red asterisks to Company and Job Title to signal which fields are essential — reducing form anxiety.</p></li>
-          <li class="cs-timeline-item"><h5>Designed Settings Onboarding</h5><p>The first version had no setup guidance. Built a full settings page with numbered steps and a connection test for API token, Base ID, and table name.</p></li>
-          <li class="cs-timeline-item"><h5>Refined Form Layout</h5><p>Reorganized field ordering for faster scanning — paired Job Type and Work Model side-by-side, moved Notes below Status, and added the Source auto-detection with link icon.</p></li>
-        </ul>
-        <div class="cs-screen-grid" style="margin-top:16px;">
-          <div class="cs-screen-item">
-            <img src="images/rolesync-v1.png" alt="V1 Job Tracker" style="width:100%;border-radius:8px;display:block;">
-            <div class="cs-screen-caption"><h5>V1 — Job Tracker</h5><p>No required field indicators, generic name, no settings page.</p></div>
-          </div>
-          <div class="cs-screen-item">
-            <img src="images/rolesync-v2.png" alt="V2 RoleSync" style="width:100%;border-radius:8px;display:block;">
-            <div class="cs-screen-caption"><h5>V2 — RoleSync</h5><p>Rebranded, required fields marked, refined layout, settings onboarding added.</p></div>
-          </div>
-        </div>
+        <ol style="margin:16px 0 20px;padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+          <li class="cs-body"><strong>Open any job posting.</strong> Navigate to a listing on LinkedIn, Handshake, ZipRecruiter, or any company career page.</li>
+          <li class="cs-body"><strong>Click the RoleSync extension.</strong> Fields auto-populate with the job title, company, salary, location, and source detected automatically.</li>
+          <li class="cs-body"><strong>Review and customize.</strong> Edit any field, tag your status, add a date, and leave notes before saving.</li>
+        </ol>
+        <video src="images/rolesync-walkthrough.mp4" controls playsinline style="width:100%;border-radius:12px;display:block;"></video>
+        <h3 class="cs-heading" style="margin-top:32px;">Synced to Airtable</h3>
+        <p class="cs-body" style="margin:10px 0 16px;">The moment you save, the entry lands in your Airtable base, ready to sort, filter, and track alongside everything else.</p>
+        <video src="images/rolesync-airtable-result.mp4" controls playsinline style="width:100%;border-radius:12px;display:block;"></video>
       </div>
 
       <hr class="cs-divider">
@@ -1253,18 +1167,11 @@ const data = {
       <div class="cs-section">
         <span class="cs-label">Outcome</span>
         <h3 class="cs-heading">From Idea to Working Product</h3>
-        <p class="cs-body">RoleSync replaced a manual process that took 3–5 minutes per application with a single click. It's a working Chrome extension I use daily in my own job search.</p>
         <div class="cs-outcome-cards">
           <div class="cs-outcome-card"><span class="cs-outcome-num">5</span><p>Days from idea to working extension</p></div>
           <div class="cs-outcome-card"><span class="cs-outcome-num">4+</span><p>Job platforms supported</p></div>
           <div class="cs-outcome-card"><span class="cs-outcome-num">150+</span><p>Manual entries replaced</p></div>
-          <div class="cs-outcome-card"><span class="cs-outcome-num">v1.0</span><p>Published to GitHub</p></div>
-        </div>
-        <div class="cs-screen-grid" style="margin-top:4px;">
-          <div class="cs-screen-item full">
-            <img src="images/rolesync-chrome-extensions.png" alt="RoleSync in Chrome extensions" style="width:100%;border-radius:8px;display:block;">
-            <div class="cs-screen-caption" style="text-align:center;"><p>RoleSync v1.0.0 installed and active in Chrome.</p></div>
-          </div>
+          <a href="https://github.com/gennyymarie/rolesync-extension" target="_blank" class="cs-outcome-card" style="text-decoration:none;cursor:pointer;"><span class="cs-outcome-num">v1.0</span><p>Published to GitHub ↗</p></a>
         </div>
       </div>
 
@@ -1274,12 +1181,7 @@ const data = {
         <span class="cs-label">Takeaways</span>
         <div class="cs-takeaway-cols" style="margin-top:20px;">
           <div class="cs-takeaway-col" style="grid-column: 1/-1;">
-            <h5>What I Learned</h5>
-            <p>This was my first time building a full product from idea to working tool in under a week. Using Claude Code let me focus on design decisions and interaction logic rather than getting stuck on syntax.</p>
-          </div>
-          <div class="cs-takeaway-col" style="grid-column: 1/-1;">
-            <h5>The biggest lesson</h5>
-            <p>Solving your own problem is the fastest way to understand what users actually need. I didn't need to do user research because I was the user — 150+ rows of messy spreadsheet data was all the evidence I needed.</p>
+            <p>Building RoleSync taught me that the fastest path to understanding a user's problem is living it yourself. I didn't need interviews or surveys — 150+ rows of manual data entry was research enough. Shipping something functional in 5 days also pushed me to make real decisions quickly, without overthinking, and that's a skill I hadn't fully tested before.</p>
           </div>
         </div>
       </div>
@@ -1290,7 +1192,7 @@ const data = {
     name: 'Future Funds',
     subtitle: 'Redesigning a Financial Services Landing Page to Improve Clarity and User Flow.',
     meta: [{l:'Timeline',v:'May – Jun 2025'},{l:'Role',v:'UX Designer'},{l:'Scope',v:'Wireframing · Prototyping · Usability Strategy'}],
-    hero: 'images/hero-futurefunds.png',
+    hero: 'cover-futurefunds.png',
     desc: `
       <div class="cs-section">
         <span class="cs-label">Overview</span>
@@ -1337,11 +1239,7 @@ const data = {
       <div class="cs-section">
         <h3 class="cs-heading">Industry Patterns That Stood Out</h3>
         <p class="cs-body">I also looked at how established financial services handled similar challenges. Betterment, NerdWallet, and QuickBooks all <strong>shared common patterns: clear section labels, generous white space, and logical flow.</strong></p>
-        <div class="cs-logo-row">
-          <img src="images/ff-logo-betterment.png" alt="Betterment" style="max-height:40px;object-fit:contain;display:block;margin:auto;">
-          <img src="images/ff-logo-quickbooks.png" alt="QuickBooks" style="max-height:40px;object-fit:contain;display:block;margin:auto;">
-          <img src="images/ff-logo-nerdwallet.png" alt="NerdWallet" style="max-height:40px;object-fit:contain;display:block;margin:auto;">
-        </div>
+        <img src="images/ff-logos-competitors.png" alt="Betterment, QuickBooks, and NerdWallet logos" style="width:100%;display:block;margin:20px 0;border-radius:10px;">
       </div>
 
       <hr class="cs-divider">
@@ -1519,28 +1417,20 @@ document.addEventListener('mousedown', e => {
   e.preventDefault();
 });
 
-const ftRow = document.querySelector('.ft-row');
-let isDragging = false, startX, startScroll;
-ftRow.addEventListener('mousedown', e => {
-  isDragging = true;
-  ftRow.classList.add('dragging');
-  startX = e.clientX;
-  startScroll = ftRow.scrollLeft;
-  e.preventDefault();
-});
-document.addEventListener('mouseup', () => {
-  isDragging = false;
-  ftRow.classList.remove('dragging');
-});
-document.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  const dx = e.clientX - startX;
-  ftRow.scrollLeft = startScroll - dx;
-});
 
 
 
-// Mobile nav
+// User flow tabs
+function ufSwitch(n, btn) {
+  [0,1,2].forEach(function(i) {
+    document.getElementById('uf-panel-'+i).style.display = i===n ? 'block' : 'none';
+    var b = document.querySelectorAll('.uft-btn')[i];
+    b.style.borderBottomColor = i===n ? 'var(--ink)' : 'transparent';
+    b.style.color = i===n ? 'var(--ink)' : 'var(--mid)';
+    b.style.fontWeight = i===n ? '500' : '300';
+  });
+}
+
 (function(){
   var b=document.getElementById('navBurger'),n=document.getElementById('navLinks');
   if(!b||!n)return;

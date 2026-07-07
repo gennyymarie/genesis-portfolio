@@ -6,6 +6,36 @@
 <title>Fun — Genesis Gonzalez</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #fff;
+  --off: #f5f5f3;
+  --ink: #111;
+  --mid: #767676;
+  --border: #e6e6e4;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: #fff;
+  font-family: 'DM Sans', sans-serif;
+  cursor: none;
+}
+
+/* CURSOR */
+.cursor {
+  width: 8px; height: 8px;
+  background: #111;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  mix-blend-mode: difference;
+}
+
+/* NAV */
 nav {
   position: relative;
   padding: 18px 52px;
@@ -22,7 +52,6 @@ nav {
 .nav-links a.active { text-decoration: underline; text-underline-offset: 4px; }
 .nav-links a.dim { color: var(--mid); }
 
-/* Playground gradient */
 .nav-links a.pg span {
   background: linear-gradient(90deg,#f472b6,#a855f7,#818cf8,#f472b6);
   background-size: 250% auto;
@@ -56,50 +85,15 @@ nav {
     transition: max-height 0.44s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
   }
   .nav-links.open { max-height: 300px; opacity: 1; }
-  .nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+  .nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; font-weight: 400; }
   .nav-links li:last-child a { border-bottom: none; }
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --white: #fff;
-  --off: #f5f5f3;
-  --ink: #111;
-  --mid: #767676;
-  --border: #e6e6e4;
-}
-
-html, body {
-  width: 100%; height: 100%;
-  overflow: hidden;
-  background: #fff;
-  font-family: 'DM Sans', sans-serif;
-  cursor: none;
-}
-
-/* CURSOR */
-.cursor {
-  width: 8px; height: 8px;
-  background: #111;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%,-50%);
-  mix-blend-mode: difference;
-}
-
-/* NAV */
-
 
 /* CANVAS WRAP */
 .canvas-wrap {
-  position: fixed; inset: 0; overflow: hidden;
-  background: #fff;
-}
-.canvas-wrap.grid-mode {
   overflow-y: auto;
   overflow-x: hidden;
+  background: #fff;
 }
 .canvas-wrap::-webkit-scrollbar { display: none; }
 .canvas { position: relative; width: 100%; min-height: 100vh; }
@@ -107,41 +101,18 @@ html, body {
 /* CARDS */
 .card {
   position: absolute; left: 0; top: 0;
-  border-radius: 4px; overflow: hidden;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.08);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06);
   cursor: none;
-  transition: transform 0.7s cubic-bezier(0.34,1.12,0.64,1),
-              width 0.7s cubic-bezier(0.34,1.12,0.64,1),
-              height 0.7s cubic-bezier(0.34,1.12,0.64,1),
-              box-shadow 0.25s ease, opacity 0.38s ease;
-  will-change: transform;
-}
-.card.is-dragging {
-  box-shadow: 0 22px 64px rgba(0,0,0,0.26);
-  z-index: 500 !important;
-  transition: box-shadow 0.2s, opacity 0.2s;
+  opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.16,1,0.3,1),
+              width 0.55s cubic-bezier(0.16,1,0.3,1),
+              height 0.55s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.2s ease,
+              opacity 0.4s ease;
+  will-change: transform, opacity;
 }
 .card-face { width: 100%; height: 100%; display: block; }
-/* No hover labels — visuals only */
-body.grid-mode .card { border-radius: 4px; cursor: none; }
-
-/* TOGGLE BUTTON */
-.toggle-btn {
-  position: fixed; bottom: 28px; left: 50%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  max-width: calc(100% - 48px);
-  z-index: 300;
-  background: var(--ink); color: #fff;
-  border: none; border-radius: 100px;
-  padding: 11px 24px;
-  font-size: 0.78rem; font-family: 'DM Sans', sans-serif;
-  font-weight: 400; letter-spacing: 0.04em; cursor: none;
-  display: flex; align-items: center; gap: 8px;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.toggle-btn:hover { background: #2a2a2a; }
 
 /* POPUP */
 .overlay {
@@ -215,42 +186,7 @@ body.grid-mode .card { border-radius: 4px; cursor: none; }
 
 /* Page load */
 @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-nav         { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
-.toggle-btn { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-
-@media (max-width: 600px) {
-  
-  
-}
-
- 100%{background-position:250% center} }
-
-
-@media (max-width: 720px) {
-  
-  
-  
-  .nav-links.open { max-height: 300px; opacity: 1; }
-  .nav-links li a {
-    display: block;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.94rem;
-  }
-  .nav-links li:last-child a { border-bottom: none; }
-}
-
-
-@media (max-width: 720px) {
-  
-  
-  
-  .nav-links.open { max-height: 300px; opacity: 1; }
-  .nav-links li a { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.94rem; font-weight: 400; }
-  .nav-links li:last-child a { border-bottom: none; }
-}
-
- 100%{background-position:250% center} }
+nav { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
 </style>
 </head>
 <body>
@@ -258,7 +194,7 @@ nav         { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
 <div class="cursor" id="cur"></div>
 
 <div class="canvas-wrap" id="canvasWrap">
-    <nav>
+  <nav>
     <a href="index.html" class="nav-name">Genesis Gonzalez</a>
     <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
@@ -270,11 +206,6 @@ nav         { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both; }
   </nav>
   <div class="canvas" id="canvas"></div>
 </div>
-
-<button class="toggle-btn" id="toggleBtn" onclick="toggleMode()">
-  <span id="toggleIcon">⊞</span>
-  <span id="toggleLabel">Organize</span>
-</button>
 
 <div class="overlay" id="overlay" onclick="if(event.target===this)closePopup()">
   <div class="popup">
@@ -303,23 +234,22 @@ document.addEventListener('mousemove', e => {
 });
 
 const PROJECTS = [
-  { id:'fiera',    name:'FIERA',        cat:'Brand Identity', g:'linear-gradient(145deg,#f97b3d,#ffd06b)',  w:195, h:240, dx: -40, dy: -30, rot:-14, imgs:4, desc:'A bold, tropical curly hair brand built around confidence and celebration. Designed for women who wear their texture with pride.' },
-  { id:'moody',    name:'Moody Mix',    cat:'Brand Identity', g:'linear-gradient(145deg,#1a1a2e,#4a3f6b)', w:175, h:175, dx:  20, dy: -60, rot:  8, imgs:3, desc:'Sarcastic cat food brand starring a grumpy cat mascot. Irreverent copy meets maximalist packaging for the pet owner who gets it.' },
-  { id:'boba',     name:'Boba',         cat:'Brand Identity', g:'linear-gradient(145deg,#a78bdc,#f0c4e8)', w:185, h:230, dx:  70, dy:  10, rot: -5, imgs:4, desc:'A playful boba tea brand concept with a character-driven identity and bold, colorful packaging system.' },
-  { id:'record',   name:'Record Label', cat:'Brand Identity', g:'linear-gradient(145deg,#2c2c2c,#777)',    w:165, h:165, dx: -90, dy:  40, rot: 12, imgs:3, desc:'An independent record label identity built around texture, contrast, and a lo-fi aesthetic that feels lived-in.' },
-  { id:'dogbox',   name:'Dog Box',      cat:'Brand Identity', g:'linear-gradient(145deg,#ffe0b2,#ff8a65)', w:155, h:195, dx:  50, dy: -90, rot: -9, imgs:3, desc:'A monthly dog subscription box brand with a warm, illustrated personality — designed for devoted dog parents.' },
-  { id:'matcha',   name:'Matcha',       cat:'Packaging',      g:'linear-gradient(145deg,#c8e6c0,#5a9e5a)', w:215, h:165, dx: -20, dy:  60, rot:  3, imgs:4, desc:'A matcha and tea packaging concept exploring minimal structure with organic, earthy color palettes and hand-drawn details.' },
-  { id:'lipgloss', name:'Lip Gloss',    cat:'Packaging',      g:'linear-gradient(145deg,#f7c5d5,#e87da0)', w:170, h:215, dx:  90, dy: -20, rot:-13, imgs:4, desc:'A lip gloss packaging series with a retro-girly energy — bold typography, pink gradients, and maximalist label layouts.' },
-  { id:'hotsauce', name:'Hot Sauce',    cat:'Packaging',      g:'linear-gradient(145deg,#c0392b,#f39c12)', w:185, h:185, dx: -60, dy: -80, rot:  7, imgs:4, desc:'A hot sauce label series with fiery illustration and hand-lettered type. Each flavor has its own character and heat level.' },
-  { id:'sodas',    name:'Sodas',        cat:'Packaging',      g:'linear-gradient(145deg,#43c6ac,#191654)', w:225, h:165, dx:  10, dy:  80, rot: -3, imgs:4, desc:'A bold artisan soda packaging system with a flavor-forward design language — each can tells its own story.' },
-  { id:'skincare', name:'Skincare',     cat:'Packaging',      g:'linear-gradient(145deg,#e8d5c4,#c4a882)', w:165, h:205, dx:-120, dy:  15, rot: 11, imgs:3, desc:'A minimalist skincare packaging line with warm, sandy tones and clean type — soft luxury at an accessible price point.' },
-  { id:'sardines', name:'Sardines',     cat:'Packaging',      g:'linear-gradient(145deg,#1e5799,#7db9e8)', w:200, h:160, dx: 130, dy: -45, rot: -7, imgs:3, desc:'An elevated sardine tin rebrand — vintage nautical meets modern European grocery. Beautifully weird on purpose.' },
-  { id:'vitamins', name:'Vitamins',     cat:'Packaging',      g:'linear-gradient(145deg,#f8e71c,#f5a623)', w:170, h:170, dx: -35, dy: 115, rot:  5, imgs:3, desc:'A vitamin supplement packaging series with punchy color-coding and illustrated icons — health that actually looks good.' },
-  { id:'matches',  name:'Matches',      cat:'Packaging',      g:'linear-gradient(145deg,#37474f,#b0bec5)', w:155, h:195, dx:  85, dy:  95, rot:-11, imgs:3, desc:'A matchbook and match box series inspired by mid-century souvenir design — collectible, illustrated, and tiny.' },
-  { id:'books',    name:'Book Covers',  cat:'Editorial',      g:'linear-gradient(145deg,#3d0c02,#c0392b)', w:200, h:165, dx: -85, dy: -55, rot:  9, imgs:4, desc:'A series of book cover redesigns exploring bold type, unexpected color, and cover composition as its own art form.' },
+  { id:'fiera',    name:'FIERA',        cat:'Brand Identity', g:'linear-gradient(145deg,#f97b3d,#ffd06b)',  w:195, h:240, imgs:4, desc:'A bold, tropical curly hair brand built around confidence and celebration. Designed for women who wear their texture with pride.' },
+  { id:'moody',    name:'Moody Mix',    cat:'Brand Identity', g:'linear-gradient(145deg,#1a1a2e,#4a3f6b)', w:175, h:175, imgs:3, desc:'Sarcastic cat food brand starring a grumpy cat mascot. Irreverent copy meets maximalist packaging for the pet owner who gets it.' },
+  { id:'boba',     name:'Boba',         cat:'Brand Identity', g:'linear-gradient(145deg,#a78bdc,#f0c4e8)', w:185, h:230, imgs:4, desc:'A playful boba tea brand concept with a character-driven identity and bold, colorful packaging system.' },
+  { id:'record',   name:'Record Label', cat:'Brand Identity', g:'linear-gradient(145deg,#2c2c2c,#777)',    w:165, h:165, imgs:3, desc:'An independent record label identity built around texture, contrast, and a lo-fi aesthetic that feels lived-in.' },
+  { id:'dogbox',   name:'Dog Box',      cat:'Brand Identity', g:'linear-gradient(145deg,#ffe0b2,#ff8a65)', w:155, h:195, imgs:3, desc:'A monthly dog subscription box brand with a warm, illustrated personality — designed for devoted dog parents.' },
+  { id:'matcha',   name:'Matcha',       cat:'Packaging',      g:'linear-gradient(145deg,#c8e6c0,#5a9e5a)', w:215, h:165, imgs:4, desc:'A matcha and tea packaging concept exploring minimal structure with organic, earthy color palettes and hand-drawn details.' },
+  { id:'lipgloss', name:'Lip Gloss',    cat:'Packaging',      g:'linear-gradient(145deg,#f7c5d5,#e87da0)', w:170, h:215, imgs:4, desc:'A lip gloss packaging series with a retro-girly energy — bold typography, pink gradients, and maximalist label layouts.' },
+  { id:'hotsauce', name:'Hot Sauce',    cat:'Packaging',      g:'linear-gradient(145deg,#c0392b,#f39c12)', w:185, h:185, imgs:4, desc:'A hot sauce label series with fiery illustration and hand-lettered type. Each flavor has its own character and heat level.' },
+  { id:'sodas',    name:'Sodas',        cat:'Packaging',      g:'linear-gradient(145deg,#43c6ac,#191654)', w:225, h:165, imgs:4, desc:'A bold artisan soda packaging system with a flavor-forward design language — each can tells its own story.' },
+  { id:'skincare', name:'Skincare',     cat:'Packaging',      g:'linear-gradient(145deg,#e8d5c4,#c4a882)', w:165, h:205, imgs:3, desc:'A minimalist skincare packaging line with warm, sandy tones and clean type — soft luxury at an accessible price point.' },
+  { id:'sardines', name:'Sardines',     cat:'Packaging',      g:'linear-gradient(145deg,#1e5799,#7db9e8)', w:200, h:160, imgs:3, desc:'An elevated sardine tin rebrand — vintage nautical meets modern European grocery. Beautifully weird on purpose.' },
+  { id:'vitamins', name:'Vitamins',     cat:'Packaging',      g:'linear-gradient(145deg,#f8e71c,#f5a623)', w:170, h:170, imgs:3, desc:'A vitamin supplement packaging series with punchy color-coding and illustrated icons — health that actually looks good.' },
+  { id:'matches',  name:'Matches',      cat:'Packaging',      g:'linear-gradient(145deg,#37474f,#b0bec5)', w:155, h:195, imgs:3, desc:'A matchbook and match box series inspired by mid-century souvenir design — collectible, illustrated, and tiny.' },
+  { id:'books',    name:'Book Covers',  cat:'Editorial',      g:'linear-gradient(145deg,#3d0c02,#c0392b)', w:200, h:165, imgs:4, desc:'A series of book cover redesigns exploring bold type, unexpected color, and cover composition as its own art form.' },
 ];
 
-let isOrganized = false;
 let currentProject = null;
 let currentSlide   = 0;
 
@@ -333,112 +263,57 @@ PROJECTS.forEach((p, i) => {
   card.id = `card-${p.id}`;
   card.style.cssText = `width:${p.w}px;height:${p.h}px;opacity:0;z-index:${i+1}`;
   card.innerHTML = `<div class="card-face" style="background:${p.g}"></div>`;
-
-  // Drag vs click tracking
-  let dragging = false, startX, startY;
-  card.addEventListener('click', e => {
-    if (isOrganized) openPopup(p.id);
-  });
-  card.addEventListener('mousedown', e => {
-    if (isOrganized) return; // no drag in grid mode
-    e.stopPropagation();
-    dragging = false;
-    startX = e.clientX; startY = e.clientY;
-    card.classList.add('is-dragging');
-    card.style.zIndex = 999;
-  });
-  document.addEventListener('mousemove', e => {
-    if (!card.classList.contains('is-dragging')) return;
-    const dx = e.clientX - startX, dy = e.clientY - startY;
-    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragging = true;
-    const m = new DOMMatrix(getComputedStyle(card).transform);
-    const rot = isOrganized ? 0 : p.rot;
-    card.style.transform = `translate(${m.m41 + e.movementX}px,${m.m42 + e.movementY}px) rotate(${rot}deg)`;
-  });
-  document.addEventListener('mouseup', () => {
-    if (!card.classList.contains('is-dragging')) return;
-    card.classList.remove('is-dragging');
-    card.style.zIndex = i + 1;
-    if (!dragging) openPopup(p.id);
-  });
-
+  card.addEventListener('click', () => openPopup(p.id));
   canvas.appendChild(card);
 });
 
-// Stack
-function scatter(animate) {
-  const cx = window.innerWidth / 2;
-  const cy = window.innerHeight / 2;
-  canvasWrap.classList.remove('grid-mode');
-  document.body.classList.remove('grid-mode');
-  canvas.style.height = '100vh';
-
-  PROJECTS.forEach((p, i) => {
-    const card = document.getElementById(`card-${p.id}`);
-    card.style.width  = p.w + 'px';
-    card.style.height = p.h + 'px';
-    const tx = cx + p.dx - p.w / 2;
-    const ty = cy + p.dy - p.h / 2;
-
-    if (animate) {
-      card.style.transition = 'none';
-      card.style.transform  = `translate(${tx}px,${ty - window.innerHeight}px) rotate(${p.rot}deg)`;
-      card.style.opacity    = '0';
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          card.style.transition = '';
-          card.style.transform  = `translate(${tx}px,${ty}px) rotate(${p.rot}deg)`;
-          card.style.opacity    = '1';
-        }, 80 + i * 58);
-      });
-    } else {
-      card.style.transform = `translate(${tx}px,${ty}px) rotate(${p.rot}deg)`;
-      card.style.opacity   = '1';
-    }
-  });
-}
-
-// Organize into masonry
-function organize() {
-  const vw      = window.innerWidth;
-  const pad     = Math.max(48, vw * 0.04);
-  const gutter  = 14;
-  const navH    = 92;
-  const cols    = vw > 1100 ? 4 : vw > 750 ? 3 : 2;
-  const colW    = Math.floor((vw - pad * 2 - gutter * (cols - 1)) / cols);
-  const colH    = new Array(cols).fill(navH + 24);
+// Masonry layout
+function organize(animate) {
+  const vw     = canvasWrap.clientWidth;
+  const pad    = Math.max(24, vw * 0.04);
+  const gutter = 12;
+  const navH   = document.querySelector('nav').offsetHeight + 16;
+  const cols   = vw > 1100 ? 4 : vw > 750 ? 3 : 2;
+  const colW   = Math.floor((vw - pad * 2 - gutter * (cols - 1)) / cols);
+  const colH   = new Array(cols).fill(navH);
   let maxH = 0;
 
-  PROJECTS.forEach(p => {
+  PROJECTS.forEach((p, i) => {
     const card    = document.getElementById(`card-${p.id}`);
-    const scale   = colW / p.w;
-    const scaledH = Math.round(p.h * scale);
+    const scaledH = Math.round(p.h * (colW / p.w));
     const col     = colH.indexOf(Math.min(...colH));
     const x = pad + col * (colW + gutter);
     const y = colH[col];
 
     card.style.width  = colW + 'px';
     card.style.height = scaledH + 'px';
-    card.style.transform = `translate(${x}px,${y}px) rotate(0deg)`;
+
+    if (animate) {
+      card.style.transition = 'none';
+      card.style.transform  = `translate(${x}px,${y + 20}px)`;
+      card.style.opacity    = '0';
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          card.style.transition = '';
+          card.style.transform  = `translate(${x}px,${y}px)`;
+          card.style.opacity    = '1';
+        }, 60 + i * 45);
+      });
+    } else {
+      card.style.transform = `translate(${x}px,${y}px)`;
+      card.style.opacity   = '1';
+    }
+
     colH[col] += scaledH + gutter;
     maxH = Math.max(maxH, colH[col]);
   });
 
-  canvas.style.height = maxH + 80 + 'px';
-  canvasWrap.classList.add('grid-mode');
-  document.body.classList.add('grid-mode');
-}
-
-function toggleMode() {
-  isOrganized = !isOrganized;
-  document.getElementById('toggleIcon').textContent  = isOrganized ? '⊟' : '⊞';
-  document.getElementById('toggleLabel').textContent = isOrganized ? 'Stack' : 'Organize';
-  isOrganized ? organize() : scatter(false);
+  canvas.style.height = maxH + 60 + 'px';
 }
 
 // Init
-scatter(true);
-window.addEventListener('resize', () => isOrganized ? organize() : scatter(false));
+organize(true);
+window.addEventListener('resize', () => organize(false));
 
 // ── POPUP ──
 function openPopup(id) {
@@ -451,7 +326,6 @@ function openPopup(id) {
   document.getElementById('pName').textContent = p.name;
   document.getElementById('pDesc').textContent = p.desc;
 
-  // Slides — each a slightly different brightness so they feel like real images
   const carousel = document.getElementById('pCarousel');
   carousel.innerHTML = '';
   const brightnesses = [1, 0.88, 0.76, 0.65];
@@ -463,7 +337,6 @@ function openPopup(id) {
   }
   carousel.scrollTo({ left: 0, behavior: 'instant' });
 
-  // Dots
   const dots = document.getElementById('pDots');
   dots.innerHTML = '';
   for (let i = 0; i < p.imgs; i++) {
@@ -476,12 +349,10 @@ function openPopup(id) {
 
   syncUI();
   document.getElementById('overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
 
 function closePopup() {
   document.getElementById('overlay').classList.remove('open');
-  document.body.style.overflow = '';
 }
 
 function carouselStep(dir) {
@@ -520,10 +391,6 @@ document.getElementById('pCarousel').addEventListener('touchend',   e => {
   if (Math.abs(e.changedTouches[0].clientX - touchX) > 50)
     carouselStep(e.changedTouches[0].clientX < touchX ? 1 : -1);
 });
-
-
-
-
 
 // Mobile nav
 (function(){
